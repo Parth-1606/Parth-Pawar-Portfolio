@@ -6,7 +6,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -19,8 +18,6 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
-    // Create a transporter using standard SMTP or Gmail
-    // To use Gmail, the user must provide an App Password in .env
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -45,6 +42,13 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Run server only when running locally (not on Vercel)
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+// Export for Vercel serverless function
+export default app;
