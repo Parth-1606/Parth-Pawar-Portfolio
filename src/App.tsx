@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, ChevronRight, Code2, Database, Terminal, GraduationCap, Award, Briefcase, ArrowRight, Copy, Check, Sparkles, ShieldCheck, Send, Loader2 } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, ChevronRight, Code2, Database, Terminal, GraduationCap, Award, Briefcase, ArrowRight, Copy, Check, Sparkles, ShieldCheck, Send, Loader2, Menu, X } from 'lucide-react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import validifyImg from '../images/validify main final.png';
 import goldenhourImg from '../images/goldenhour.png';
@@ -128,6 +128,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [copied, setCopied] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -255,10 +256,51 @@ export default function App() {
           </li>
         </ul>
 
-        <div className="hidden md:block relative z-10">
-          <a href="#" className="px-4 py-2 text-red-500 hover:text-red-400 transition-colors font-medium text-sm">Resume</a>
+        <div className="hidden md:flex relative z-10 items-center gap-4">
+          <a href="https://drive.google.com/file/d/1G6HVJ3poUhm04dFtc7LqwbG6xEMITMJR/view?usp=sharing" target="_blank" rel="noreferrer" className="px-4 py-2 text-red-500 hover:text-red-400 transition-colors font-medium text-sm">Resume</a>
+        </div>
+
+        {/* Mobile Menu Toggle & Resume */}
+        <div className="md:hidden relative z-10 flex items-center gap-4">
+          <a href="https://drive.google.com/file/d/1G6HVJ3poUhm04dFtc7LqwbG6xEMITMJR/view?usp=sharing" target="_blank" rel="noreferrer" className="text-red-500 hover:text-red-400 transition-colors font-medium text-sm">Resume</a>
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-zinc-400 hover:text-white focus:outline-none">
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </motion.nav>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="fixed inset-x-0 top-[5.5rem] mx-auto z-40 w-[90%] rounded-3xl border border-white/10 bg-[#111]/95 backdrop-blur-xl p-4 md:hidden shadow-2xl"
+        >
+          <ul className="flex flex-col gap-2 text-sm font-medium text-zinc-400">
+            {['home', 'about', 'projects', 'skills', 'certifications', 'education'].map((item) => (
+              <li key={item}>
+                <a 
+                  href={`#${item}`} 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block rounded-xl px-4 py-3 transition-colors ${activeSection === item ? 'bg-white/10 text-white' : 'hover:bg-white/5 hover:text-white'}`}
+                >
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a 
+                href="#contact" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block rounded-xl px-4 py-3 hover:bg-white/5 hover:text-white transition-colors"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+        </motion.div>
+      )}
 
       <main className="mx-auto max-w-5xl px-6 pb-24">
         {/* Hero Section */}
@@ -275,7 +317,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-4 text-5xl font-black tracking-tight text-white sm:text-7xl md:text-8xl"
+            className="mt-4 text-4xl font-black tracking-tight text-white sm:text-6xl md:text-8xl"
           >
             {DATA.name}
           </motion.h1>
@@ -303,7 +345,7 @@ export default function App() {
           >
             <a 
               href="#contact" 
-              className="flex items-center gap-2 rounded-full bg-red-500 px-8 py-4 font-semibold text-white transition-colors hover:bg-red-600"
+              className="flex w-full sm:w-auto justify-center items-center gap-2 rounded-full bg-red-500 px-8 py-4 font-semibold text-white transition-colors hover:bg-red-600"
             >
               Let's Connect <ArrowRight className="h-5 w-5" />
             </a>
@@ -619,8 +661,8 @@ export default function App() {
             <p className="mb-10 max-w-xl text-lg text-zinc-400">
               I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
             </p>
-            <div className="w-full max-w-xl mx-auto mb-10 text-left">
-              <form onSubmit={handleContactSubmit} className="flex flex-col gap-4 p-8 rounded-3xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-sm">
+            <div className="w-full max-w-xl mx-auto mb-10 text-left px-4 sm:px-0">
+              <form onSubmit={handleContactSubmit} className="flex flex-col gap-4 p-6 sm:p-8 rounded-3xl border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-sm">
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="name" className="text-sm font-medium text-zinc-400 ml-2">Name</label>
                   <input
