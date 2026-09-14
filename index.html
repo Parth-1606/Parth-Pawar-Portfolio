@@ -65,13 +65,27 @@ input:focus,textarea:focus{outline:none;border-color:#16130E !important}
 .plink:hover{text-decoration-color:#C2410C}
 .plink .arr{display:inline-block;transition:transform .2s ease}
 .plink:hover .arr{transform:translate(2px,-2px)}
-/* project previews */
-.prev{overflow:hidden;border-bottom:1px solid #E4DFD3;background:#F4F1EA}
-.prev img{width:100%;aspect-ratio:16/8.5;object-fit:cover;object-position:top;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1)}
-.proj:hover .prev img{transform:scale(1.04)}
-.term-prev{background:#16130E;color:#EDE8DB;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:2;padding:18px 22px;border-bottom:1px solid #E4DFD3;overflow:hidden;position:relative}
+/* project previews — hand-built, animated */
+.prev{border-bottom:1px solid #E4DFD3;overflow:hidden;position:relative}
+.prev-light{background:#F4F1EA;padding:20px 22px 16px;display:flex;align-items:flex-end;gap:22px;min-height:158px}
+.pv-score{font-family:'Fraunces',Georgia,serif;font-size:46px;font-weight:600;line-height:1;white-space:nowrap}
+.pv-score small{font-size:14px;color:#6E675C;font-family:'JetBrains Mono',monospace;font-weight:400}
+.pv-cap{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;color:#6E675C;margin-top:8px;line-height:1.7}
+.pv-bars{flex:1;display:flex;align-items:flex-end;gap:8px;height:88px}
+.pv-bars i{flex:1;background:#C2410C;border-radius:4px 4px 0 0;height:var(--h);transform:scaleY(0);transform-origin:bottom}
+.pv-bars i:nth-child(even){background:#E8834A}
+.proj.visible .pv-bars i{animation:growBar .7s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--d,0s)}
+@keyframes growBar{to{transform:scaleY(1)}}
+.prev-map{background:#1D5C3F;min-height:158px}
+.prev-map svg{display:block;width:100%;height:158px}
+.pulse{transform-box:fill-box;transform-origin:center;animation:ping 2s ease-out infinite}
+@keyframes ping{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.pv-chip{position:absolute;top:12px;left:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;font-weight:600;color:#fff;background:rgba(22,19,14,.55);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 11px}
+.pv-chip.alt{left:auto;right:14px}
+.term-prev{background:#16130E;color:#EDE8DB;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:2;padding:18px 22px;border-bottom:1px solid #E4DFD3;overflow:hidden;position:relative;min-height:150px}
 .term-prev .tk{color:#E8834A}
 .term-prev .ok{color:#6EE7A0}
+#termLines div{white-space:pre-wrap;min-height:2em}
 /* ---- site-wide motion ---- */
 @keyframes riseIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 .load-anim{opacity:0;animation:riseIn .8s cubic-bezier(.16,1,.3,1) forwards;animation-delay:var(--d,0s)}
@@ -197,7 +211,10 @@ header.scrolled{box-shadow:0 8px 30px -18px rgba(22,19,14,.4)}
           </div>
         </div>
       </div>
-      <div class="prev"><img src="images/validify.png" alt="Validify — SaaS idea validation app" loading="lazy"></div>
+      <div class="prev prev-light">
+        <div><div class="pv-score"><span data-count="8.4" data-dec="1">0</span><small>/10</small></div><div class="pv-cap">VALIDATION<br>SCORE</div></div>
+        <div class="pv-bars"><i style="--h:42%;--d:.1s"></i><i style="--h:68%;--d:.2s"></i><i style="--h:52%;--d:.3s"></i><i style="--h:88%;--d:.4s"></i><i style="--h:64%;--d:.5s"></i><i style="--h:78%;--d:.6s"></i></div>
+      </div>
       <div class="p-6 sm:p-7">
         <h3 class="font-serif text-[21px] font-medium">SaaS idea validation, automated</h3>
         <p class="mt-2 text-[14.5px] leading-7 text-[#3d3830]">Streamlit + Gemini API app that validates startup ideas end-to-end: financial projections, competitive analysis, interactive Plotly dashboards, authentication, and PDF export.</p>
@@ -222,7 +239,20 @@ header.scrolled{box-shadow:0 8px 30px -18px rgba(22,19,14,.4)}
           </div>
         </div>
       </div>
-      <div class="prev"><img src="images/goldenhour.jpg" alt="Golden Hour — emergency triage and dispatch app" loading="lazy"></div>
+      <div class="prev prev-map">
+        <svg viewBox="0 0 400 158" preserveAspectRatio="xMidYMid slice">
+          <path id="ghRoute" d="M28,128 C80,120 92,62 152,66 S250,38 312,54 S368,84 384,72" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="2" stroke-dasharray="6 6"/>
+          <circle r="5.5" fill="#FBFAF7"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#ghRoute"/></animateMotion></circle>
+          <g transform="translate(28,128)"><circle r="5" fill="#E8834A"/></g>
+          <g transform="translate(376,70)">
+            <circle class="pulse" r="11" fill="none" stroke="#FBFAF7" stroke-width="2"/>
+            <circle r="11" fill="#FBFAF7"/>
+            <path d="M-5,0 H5 M0,-5 V5" stroke="#1D5C3F" stroke-width="3" stroke-linecap="round"/>
+          </g>
+        </svg>
+        <div class="pv-chip">NEWS2 · 7 — HIGH</div>
+        <div class="pv-chip alt">AMBULANCE EN ROUTE</div>
+      </div>
       <div class="p-6 sm:p-7">
         <h3 class="font-serif text-[21px] font-medium">Emergency triage &amp; hospital routing</h3>
         <p class="mt-2 text-[14.5px] leading-7 text-[#3d3830]">Predicts patient severity with NEWS2 scoring (ICU, ventilator, specialist needs) and routes ambulances with a constraint engine — capability, beds, load, transit time. Postgres + Redis + WebSocket live dispatch.</p>
@@ -248,7 +278,7 @@ header.scrolled{box-shadow:0 8px 30px -18px rgba(22,19,14,.4)}
           </div>
         </div>
       </div>
-      <div class="term-prev"><span class="tk">$</span> agent recommend --catalog 377_records.csv<br><span class="ok">✓</span> catalog embedded · gemini · 377 records<br><span class="ok">✓</span> top match found · confidence 0.91<br><span class="ok">✓</span> reply in 1.2s · stateless, no session store</div>
+      <div class="term-prev"><div id="termLines"></div><span class="blink-caret">▌</span></div>
       <div class="p-6 sm:p-7">
         <h3 class="font-serif text-[21px] font-medium">Conversational assessment recommendations</h3>
         <p class="mt-2 text-[14.5px] leading-7 text-[#3d3830]">A 377-record catalog indexed in ChromaDB with Gemini embeddings for semantic retrieval. Stateless multi-turn dialogue reconstructed from history — 8-turn cap, 30-second timeout, deployed on Render.</p>
@@ -535,6 +565,40 @@ document.querySelectorAll('.proj-head').forEach(h=>{
   h.addEventListener('mousemove',e=>{ const r=h.getBoundingClientRect();
     h.style.setProperty('--mx',(e.clientX-r.left)+'px'); h.style.setProperty('--my',(e.clientY-r.top)+'px'); });
 });
+
+// self-typing agent terminal (plays once when visible)
+const termData=[
+  {t:'$ agent recommend --catalog 377_records.csv', c:''},
+  {t:'✓ catalog embedded · gemini · 377 records', c:'ok'},
+  {t:'✓ top match found · confidence 0.91', c:'ok'},
+  {t:'✓ reply in 1.2s · stateless, no session store', c:'ok'}
+];
+const termBox=document.getElementById('termLines');
+if(termBox){
+  const tio=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting) return; tio.disconnect();
+    let li=0;
+    const typeLine=()=>{
+      if(li>=termData.length) return;
+      const {t,c}=termData[li];
+      const div=document.createElement('div');
+      if(c) div.className=c;
+      if(!c){ const pre=document.createElement('span'); pre.className='tk'; pre.textContent='$ '; div.appendChild(pre); }
+      const body=document.createElement('span'); div.appendChild(body);
+      termBox.appendChild(div);
+      const txt = !c ? t.slice(2) : t;
+      let ci=0;
+      const tick=()=>{
+        body.textContent=txt.slice(0,++ci);
+        if(ci<txt.length) setTimeout(tick, 16);
+        else { li++; setTimeout(typeLine, 320); }
+      };
+      tick();
+    };
+    typeLine();
+  }),{threshold:.4});
+  tio.observe(termBox);
+}
 
 function toast(msg){
   const t=document.getElementById('toast');
