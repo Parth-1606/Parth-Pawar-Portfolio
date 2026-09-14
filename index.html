@@ -82,7 +82,7 @@ input:focus,textarea:focus{outline:none;border-color:#16130E !important}
 @keyframes ping{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.6);opacity:0}}
 .pv-chip{position:absolute;top:12px;left:14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;font-weight:600;color:#fff;background:rgba(22,19,14,.55);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 11px}
 .pv-chip.alt{left:auto;right:14px}
-.term-prev{background:#16130E;color:#EDE8DB;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:2;padding:18px 22px;border-bottom:1px solid #E4DFD3;overflow:hidden;position:relative;min-height:150px}
+.term-prev{background:#16130E;color:#EDE8DB;font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:2;padding:18px 22px;overflow:hidden;position:relative;min-height:150px}
 .term-prev .tk{color:#E8834A}
 .term-prev .ok{color:#6EE7A0}
 #termLines div{white-space:pre-wrap;min-height:2em}
@@ -119,6 +119,23 @@ header.scrolled{box-shadow:0 8px 30px -18px rgba(22,19,14,.4)}
 /* skill rows */
 .skill-row{transition:background .2s ease,padding-left .25s ease;border-radius:12px}
 .skill-row:hover{background:#fff;padding-left:1.75rem}
+/* mac window chrome */
+.macbar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#EDE8DB;border-bottom:1px solid #E4DFD3}
+.macbar.dark{background:#2A241D;border-bottom:1px solid rgba(255,255,255,.08)}
+.macdots{display:flex;gap:7px}
+.macdots i{width:11px;height:11px;border-radius:999px;display:grid;place-items:center;font-style:normal}
+.macdots i:nth-child(1){background:#FF5F57}
+.macdots i:nth-child(2){background:#FEBC2E}
+.macdots i:nth-child(3){background:#28C840}
+.macdots i::after{font-size:9px;line-height:1;color:rgba(0,0,0,.55);opacity:0;transition:opacity .15s ease;font-family:Inter,sans-serif;font-weight:700}
+.macdots i:nth-child(1)::after{content:"×"}
+.macdots i:nth-child(2)::after{content:"–"}
+.macdots i:nth-child(3)::after{content:"+"}
+.proj:hover .macdots i::after{opacity:1}
+.mactitle{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:#6E675C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.macbar.dark .mactitle{color:rgba(255,255,255,.55)}
+.proj.visible .macwin{animation:winIn .6s cubic-bezier(.16,1,.3,1) backwards}
+@keyframes winIn{from{opacity:0;transform:scale(.965) translateY(10px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body class="font-sans">
@@ -211,10 +228,13 @@ header.scrolled{box-shadow:0 8px 30px -18px rgba(22,19,14,.4)}
           </div>
         </div>
       </div>
-      <div class="prev prev-light">
+      <div class="prev"><div class="macwin">
+        <div class="macbar"><div class="macdots"><i></i><i></i><i></i></div><div class="mactitle">validify — dashboard</div><div style="width:52px"></div></div>
+        <div class="prev-light">
         <div><div class="pv-score"><span data-count="8.4" data-dec="1">0</span><small>/10</small></div><div class="pv-cap">VALIDATION<br>SCORE</div></div>
         <div class="pv-bars"><i style="--h:42%;--d:.1s"></i><i style="--h:68%;--d:.2s"></i><i style="--h:52%;--d:.3s"></i><i style="--h:88%;--d:.4s"></i><i style="--h:64%;--d:.5s"></i><i style="--h:78%;--d:.6s"></i></div>
-      </div>
+        </div>
+      </div></div>
       <div class="p-6 sm:p-7">
         <h3 class="font-serif text-[21px] font-medium">SaaS idea validation, automated</h3>
         <p class="mt-2 text-[14.5px] leading-7 text-[#3d3830]">Streamlit + Gemini API app that validates startup ideas end-to-end: financial projections, competitive analysis, interactive Plotly dashboards, authentication, and PDF export.</p>
@@ -239,7 +259,9 @@ header.scrolled{box-shadow:0 8px 30px -18px rgba(22,19,14,.4)}
           </div>
         </div>
       </div>
-      <div class="prev prev-map">
+      <div class="prev"><div class="macwin">
+        <div class="macbar"><div class="macdots"><i></i><i></i><i></i></div><div class="mactitle">golden-hour — dispatch</div><div style="width:52px"></div></div>
+        <div class="prev-map">
         <svg viewBox="0 0 400 158" preserveAspectRatio="xMidYMid slice">
           <path id="ghRoute" d="M28,128 C80,120 92,62 152,66 S250,38 312,54 S368,84 384,72" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="2" stroke-dasharray="6 6"/>
           <circle r="5.5" fill="#FBFAF7"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#ghRoute"/></animateMotion></circle>
@@ -253,6 +275,7 @@ header.scrolled{box-shadow:0 8px 30px -18px rgba(22,19,14,.4)}
         <div class="pv-chip">NEWS2 · 7 — HIGH</div>
         <div class="pv-chip alt">AMBULANCE EN ROUTE</div>
       </div>
+      </div></div>
       <div class="p-6 sm:p-7">
         <h3 class="font-serif text-[21px] font-medium">Emergency triage &amp; hospital routing</h3>
         <p class="mt-2 text-[14.5px] leading-7 text-[#3d3830]">Predicts patient severity with NEWS2 scoring (ICU, ventilator, specialist needs) and routes ambulances with a constraint engine — capability, beds, load, transit time. Postgres + Redis + WebSocket live dispatch.</p>
@@ -278,7 +301,10 @@ header.scrolled{box-shadow:0 8px 30px -18px rgba(22,19,14,.4)}
           </div>
         </div>
       </div>
-      <div class="term-prev"><div id="termLines"></div><span class="blink-caret">▌</span></div>
+      <div class="prev"><div class="macwin">
+        <div class="macbar dark"><div class="macdots"><i></i><i></i><i></i></div><div class="mactitle">agent — zsh</div><div style="width:52px"></div></div>
+        <div class="term-prev"><div id="termLines"></div><span class="blink-caret">▌</span></div>
+      </div></div>
       <div class="p-6 sm:p-7">
         <h3 class="font-serif text-[21px] font-medium">Conversational assessment recommendations</h3>
         <p class="mt-2 text-[14.5px] leading-7 text-[#3d3830]">A 377-record catalog indexed in ChromaDB with Gemini embeddings for semantic retrieval. Stateless multi-turn dialogue reconstructed from history — 8-turn cap, 30-second timeout, deployed on Render.</p>
