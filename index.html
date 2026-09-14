@@ -136,6 +136,9 @@ header.scrolled{box-shadow:0 8px 30px -18px rgba(22,19,14,.4)}
 .macbar.dark .mactitle{color:rgba(255,255,255,.55)}
 .proj.visible .macwin{animation:winIn .6s cubic-bezier(.16,1,.3,1) backwards}
 @keyframes winIn{from{opacity:0;transform:scale(.965) translateY(10px)}to{opacity:1;transform:none}}
+.macwin{position:relative}
+.macwin::after{content:"";position:absolute;top:0;bottom:0;width:45%;left:-60%;background:rgba(255,255,255,.14);transform:skewX(-18deg);transition:left .7s ease;pointer-events:none}
+.proj:hover .macwin::after{left:135%}
 /* split project layout */
 .macstage{flex:1;display:flex;align-items:center;justify-content:center;background-color:#F4F1EA;background-image:radial-gradient(#D8D2C2 1.1px, transparent 1.1px);background-size:18px 18px;padding:26px;min-height:260px}
 .macwin{width:100%;border-radius:12px;overflow:hidden;border:1px solid #E4DFD3;box-shadow:0 24px 44px -24px rgba(22,19,14,.5);background:#fff}
@@ -218,101 +221,98 @@ header.scrolled{box-shadow:0 8px 30px -18px rgba(22,19,14,.4)}
     <div class="rule mt-6"></div>
   </div>
 
-  <div class="mt-8 space-y-5">
-    <div class="grid md:grid-cols-2 gap-4 items-stretch">
-    <article class="proj card card-hover reveal overflow-hidden tilt flex flex-col">
-      <div class="macstage flex-1">
-      <div class="macwin">
-        <div class="macbar"><div class="macdots"><i></i><i></i><i></i></div><div class="mactitle">validify — dashboard</div><div style="width:52px"></div></div>
-        <div class="prev-light">
-        <div><div class="pv-score"><span data-count="8.4" data-dec="1">0</span><small>/10</small></div><div class="pv-cap">VALIDATION<br>SCORE</div></div>
-        <div class="pv-bars"><i style="--h:42%;--d:.1s"></i><i style="--h:68%;--d:.2s"></i><i style="--h:52%;--d:.3s"></i><i style="--h:88%;--d:.4s"></i><i style="--h:64%;--d:.5s"></i><i style="--h:78%;--d:.6s"></i></div>
+  <div class="mt-8 space-y-8">
+    <article class="proj card card-hover reveal overflow-hidden">
+      <div class="p-7 sm:p-8 pb-6">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <div class="font-mono text-[11px] tracking-[.14em] text-ember font-semibold">PROJECT 01 · AI SAAS · LLM</div>
+            <h3 class="font-serif text-[30px] font-medium mt-1">Validify</h3>
+          </div>
+          <span class="pill-ink mt-1"><span class="dot"></span>SHIPPED</span>
+        </div>
+        <p class="mt-3 text-[15px] leading-7 text-[#3d3830]">Streamlit + Gemini API app that validates startup ideas end-to-end: financial projections, competitive analysis, interactive Plotly dashboards, authentication, and PDF export.</p>
+      </div>
+      <div class="mx-4 sm:mx-6">
+        <div class="macwin tilt">
+          <div class="macbar"><div class="macdots"><i></i><i></i><i></i></div><div class="mactitle">validify — dashboard</div><div style="width:52px"></div></div>
+          <div class="prev-light">
+          <div><div class="pv-score"><span data-count="8.4" data-dec="1">0</span><small>/10</small></div><div class="pv-cap">VALIDATION<br>SCORE</div></div>
+          <div class="pv-bars"><i style="--h:42%;--d:.1s"></i><i style="--h:68%;--d:.2s"></i><i style="--h:52%;--d:.3s"></i><i style="--h:88%;--d:.4s"></i><i style="--h:64%;--d:.5s"></i><i style="--h:78%;--d:.6s"></i></div>
+          </div>
         </div>
       </div>
-      </div>
-    </article>
-    <article class="card card-hover reveal p-7 flex flex-col" style="border-top:4px solid #C2410C">
-      <div class="flex items-start justify-between gap-3">
-        <div class="font-mono text-[11px] tracking-[.14em] text-ember font-semibold pt-2">AI SAAS · LLM</div>
-        <div class="font-serif italic text-[36px] leading-none text-[#E4DFD3]">01</div>
-      </div>
-      <h3 class="font-serif text-[24px] font-medium mt-2">Validify — SaaS idea validation, automated</h3>
-      <p class="mt-2 text-[14.5px] leading-7 text-[#3d3830]">Streamlit + Gemini API app that validates startup ideas end-to-end: financial projections, competitive analysis, interactive Plotly dashboards, authentication, and PDF export.</p>
-      <div class="mt-4 font-mono text-[11px] tracking-wide text-muted">PYTHON · STREAMLIT · GEMINI API · PLOTLY · PYDANTIC · SQLITE</div>
-      <div class="mt-auto pt-5 flex items-center justify-between gap-3 flex-wrap">
-        <div class="flex gap-5 text-[14px]">
+      <div class="p-7 sm:p-8 pt-5">
+        <div class="font-mono text-[11px] tracking-wide text-muted">PYTHON · STREAMLIT · GEMINI API · PLOTLY · PYDANTIC · SQLITE</div>
+        <div class="mt-4 flex flex-wrap gap-5 text-[14px]">
           <a href="https://github.com/Parth-1606/Validify" target="_blank" class="plink">GitHub <span class="arr">↗</span></a>
         </div>
-        <span class="pill-ink"><span class="dot"></span>SHIPPED</span>
       </div>
     </article>
-    </div>
 
-    <div class="grid md:grid-cols-2 gap-4 items-stretch">
-    <article class="card card-hover reveal p-7 flex flex-col md:order-1" style="border-top:4px solid #1D5C3F">
-      <div class="flex items-start justify-between gap-3">
-        <div class="font-mono text-[11px] tracking-[.14em] text-ember font-semibold pt-2">REAL-TIME · ROUTING</div>
-        <div class="font-serif italic text-[36px] leading-none text-[#E4DFD3]">02</div>
+    <article class="proj card card-hover reveal overflow-hidden">
+      <div class="p-7 sm:p-8 pb-6">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <div class="font-mono text-[11px] tracking-[.14em] text-ember font-semibold">PROJECT 02 · REAL-TIME · ROUTING</div>
+            <h3 class="font-serif text-[30px] font-medium mt-1">Golden Hour</h3>
+          </div>
+          <span class="pill-ink mt-1"><span class="dot"></span>LIVE DEMO</span>
+        </div>
+        <p class="mt-3 text-[15px] leading-7 text-[#3d3830]">Predicts patient severity with NEWS2 scoring (ICU, ventilator, specialist needs) and routes ambulances with a constraint engine — capability, beds, load, transit time. Postgres + Redis + WebSocket live dispatch.</p>
       </div>
-      <h3 class="font-serif text-[24px] font-medium mt-2">Golden Hour — emergency triage &amp; hospital routing</h3>
-      <p class="mt-2 text-[14.5px] leading-7 text-[#3d3830]">Predicts patient severity with NEWS2 scoring (ICU, ventilator, specialist needs) and routes ambulances with a constraint engine — capability, beds, load, transit time. Postgres + Redis + WebSocket live dispatch.</p>
-      <div class="mt-4 font-mono text-[11px] tracking-wide text-muted">NODE.JS · EXPRESS · POSTGRESQL · REDIS · WEBSOCKET · OPENROUTESERVICE</div>
-      <div class="mt-auto pt-5 flex items-center justify-between gap-3 flex-wrap">
-        <div class="flex gap-5 text-[14px]">
+      <div class="mx-4 sm:mx-6">
+        <div class="macwin tilt">
+          <div class="macbar"><div class="macdots"><i></i><i></i><i></i></div><div class="mactitle">golden-hour — dispatch</div><div style="width:52px"></div></div>
+          <div class="prev-map">
+          <svg viewBox="0 0 400 158" preserveAspectRatio="xMidYMid slice">
+            <path id="ghRoute" d="M28,128 C80,120 92,62 152,66 S250,38 312,54 S368,84 384,72" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="2" stroke-dasharray="6 6"/>
+            <circle r="5.5" fill="#FBFAF7"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#ghRoute"/></animateMotion></circle>
+            <g transform="translate(28,128)"><circle r="5" fill="#E8834A"/></g>
+            <g transform="translate(376,70)">
+              <circle class="pulse" r="11" fill="none" stroke="#FBFAF7" stroke-width="2"/>
+              <circle r="11" fill="#FBFAF7"/>
+              <path d="M-5,0 H5 M0,-5 V5" stroke="#1D5C3F" stroke-width="3" stroke-linecap="round"/>
+            </g>
+          </svg>
+          <div class="pv-chip">NEWS2 · 7 — HIGH</div>
+          <div class="pv-chip alt">AMBULANCE EN ROUTE</div>
+          </div>
+        </div>
+      </div>
+      <div class="p-7 sm:p-8 pt-5">
+        <div class="font-mono text-[11px] tracking-wide text-muted">NODE.JS · EXPRESS · POSTGRESQL · REDIS · WEBSOCKET · OPENROUTESERVICE</div>
+        <div class="mt-4 flex flex-wrap gap-5 text-[14px]">
           <a href="https://github.com/Parth-1606/GoldenR-Dispatch" target="_blank" class="plink">GitHub <span class="arr">↗</span></a>
           <a href="https://golden-r-dispatch.vercel.app" target="_blank" class="plink">Live <span class="arr">↗</span></a>
         </div>
-        <span class="pill-ink"><span class="dot"></span>LIVE DEMO</span>
       </div>
     </article>
-    <article class="proj card card-hover reveal overflow-hidden tilt flex flex-col md:order-2">
-      <div class="macstage flex-1">
-      <div class="macwin">
-        <div class="macbar"><div class="macdots"><i></i><i></i><i></i></div><div class="mactitle">golden-hour — dispatch</div><div style="width:52px"></div></div>
-        <div class="prev-map">
-        <svg viewBox="0 0 400 158" preserveAspectRatio="xMidYMid slice">
-          <path id="ghRoute" d="M28,128 C80,120 92,62 152,66 S250,38 312,54 S368,84 384,72" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="2" stroke-dasharray="6 6"/>
-          <circle r="5.5" fill="#FBFAF7"><animateMotion dur="5s" repeatCount="indefinite"><mpath href="#ghRoute"/></animateMotion></circle>
-          <g transform="translate(28,128)"><circle r="5" fill="#E8834A"/></g>
-          <g transform="translate(376,70)">
-            <circle class="pulse" r="11" fill="none" stroke="#FBFAF7" stroke-width="2"/>
-            <circle r="11" fill="#FBFAF7"/>
-            <path d="M-5,0 H5 M0,-5 V5" stroke="#1D5C3F" stroke-width="3" stroke-linecap="round"/>
-          </g>
-        </svg>
-        <div class="pv-chip">NEWS2 · 7 — HIGH</div>
-        <div class="pv-chip alt">AMBULANCE EN ROUTE</div>
+
+    <article class="proj card card-hover reveal overflow-hidden">
+      <div class="p-7 sm:p-8 pb-6">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <div class="font-mono text-[11px] tracking-[.14em] text-ember font-semibold">PROJECT 03 · CONVERSATIONAL RAG</div>
+            <h3 class="font-serif text-[30px] font-medium mt-1">Assessment Agent</h3>
+          </div>
+          <span class="pill-ink mt-1"><span class="dot"></span>ON RENDER</span>
+        </div>
+        <p class="mt-3 text-[15px] leading-7 text-[#3d3830]">A 377-record catalog indexed in ChromaDB with Gemini embeddings for semantic retrieval. Stateless multi-turn dialogue reconstructed from history — 8-turn cap, 30-second timeout, deployed on Render.</p>
+      </div>
+      <div class="mx-4 sm:mx-6">
+        <div class="macwin tilt">
+          <div class="macbar dark"><div class="macdots"><i></i><i></i><i></i></div><div class="mactitle">agent — zsh</div><div style="width:52px"></div></div>
+          <div class="term-prev"><div id="termLines"></div><span class="blink-caret">▌</span></div>
         </div>
       </div>
-      </div>
-    </article>
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-4 items-stretch">
-    <article class="proj card card-hover reveal overflow-hidden tilt flex flex-col">
-      <div class="macstage flex-1">
-      <div class="macwin">
-        <div class="macbar dark"><div class="macdots"><i></i><i></i><i></i></div><div class="mactitle">agent — zsh</div><div style="width:52px"></div></div>
-        <div class="term-prev"><div id="termLines"></div><span class="blink-caret">▌</span></div>
-      </div>
-      </div>
-    </article>
-    <article class="card card-hover reveal p-7 flex flex-col" style="border-top:4px solid #16130E">
-      <div class="flex items-start justify-between gap-3">
-        <div class="font-mono text-[11px] tracking-[.14em] text-ember font-semibold pt-2">CONVERSATIONAL RAG</div>
-        <div class="font-serif italic text-[36px] leading-none text-[#E4DFD3]">03</div>
-      </div>
-      <h3 class="font-serif text-[24px] font-medium mt-2">Assessment Agent — conversational recommendations</h3>
-      <p class="mt-2 text-[14.5px] leading-7 text-[#3d3830]">A 377-record catalog indexed in ChromaDB with Gemini embeddings for semantic retrieval. Stateless multi-turn dialogue reconstructed from history — 8-turn cap, 30-second timeout, deployed on Render.</p>
-      <div class="mt-4 font-mono text-[11px] tracking-wide text-muted">FASTAPI · GEMINI EMBEDDINGS · CHROMADB · RENDER</div>
-      <div class="mt-auto pt-5 flex items-center justify-between gap-3 flex-wrap">
-        <div class="flex gap-5 text-[14px]">
+      <div class="p-7 sm:p-8 pt-5">
+        <div class="font-mono text-[11px] tracking-wide text-muted">FASTAPI · GEMINI EMBEDDINGS · CHROMADB · RENDER</div>
+        <div class="mt-4 flex flex-wrap gap-5 text-[14px]">
           <a href="https://github.com/Parth-1606" target="_blank" class="plink">GitHub <span class="arr">↗</span></a>
         </div>
-        <span class="pill-ink"><span class="dot"></span>ON RENDER</span>
       </div>
     </article>
-    </div>
 
   </div>
 </section>
@@ -585,7 +585,7 @@ if(rot) setInterval(()=>{ rot.classList.add('fade');
 },2200);
 
 // cursor spotlight on project headers
-document.querySelectorAll('.proj-head').forEach(h=>{
+document.querySelectorAll('.proj .macwin').forEach(h=>{
   const s=document.createElement('div'); s.className='spot'; h.appendChild(s);
   h.addEventListener('mousemove',e=>{ const r=h.getBoundingClientRect();
     h.style.setProperty('--mx',(e.clientX-r.left)+'px'); h.style.setProperty('--my',(e.clientY-r.top)+'px'); });
